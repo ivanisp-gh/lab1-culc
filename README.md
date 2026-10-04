@@ -1,171 +1,14 @@
-# Py Lab 1 Calc
+# py-lab1-calc
 
-Небольшой проект на Python с двумя основными функциями:
+Консольное приложение с двумя командами:
 
-- Калькулятор математических выражений
-- Конвертер длины, температуры и веса
-
-## Возможности
-
-### Калькулятор
-
-Поддерживаемые операции:
-
-- Сложение: `+`
-- Вычитание: `-`
-- Умножение: `*`
-- Деление: `/`
-- Целочисленное деление: `//`
-- Остаток от деления: `%`
-- Скобки: `()`
-- Отрицательные и дробные числа
-
-Примеры:
-
-```python
-from toolkit.calculator import calculation
-
-print(calculation("2+2*2"))
-# 6.0
-
-print(calculation("(2+2)*2"))
-# 8.0
-
-print(calculation("7//2"))
-# 3.0
-
-print(calculation("10%3"))
-# 1.0
-```
-
-При попытке деления на ноль вызывается ошибка `DivisionByZeroError`.
-
-```python
-from toolkit.errors import DivisionByZeroError
-
-try:
-    calculation("5/0")
-except DivisionByZeroError:
-    print("На ноль делить нельзя")
-```
-
-## Конвертер величин
-
-Конвертер поддерживает:
-
-- Длину: `mm`, `cm`, `m`, `km`
-- Температуру: `C`, `F`, `K`
-- Вес: `g`, `kg`
-
-Можно использовать точку или запятую в дробных числах.
-
-### Примеры длины
-
-```python
-from toolkit.converter import convert
-
-print(convert("1m"))
-# 1000.0mm - 100.0cm - 1.0m - 0.001km
-
-print(convert("2,5m"))
-# 2500.0mm - 250.0cm - 2.5m - 0.0025km
-```
-
-Отрицательная длина вызывает ошибку `NegativeDistanceError`.
-
-```python
-from toolkit.errors import NegativeDistanceError
-
-try:
-    convert("-5m")
-except NegativeDistanceError:
-    print("Расстояние не может быть отрицательным")
-```
-
-### Примеры температуры
-
-```python
-print(convert("0C"))
-# 0.0C - 32.0F - 273.15K
-
-print(convert("32F"))
-# 0.0C - 32.0F - 273.15K
-
-print(convert("273.15K"))
-# 0.0C - 32.0F - 273.15K
-```
-
-Также допускается запись со знаком градуса:
-
-```python
-print(convert("0 °C"))
-# 0.0C - 32.0F - 273.15K
-```
-
-Температура ниже абсолютного нуля вызывает ошибку `BelowAbsoluteZeroError`.
-
-```python
-from toolkit.errors import BelowAbsoluteZeroError
-
-try:
-    convert("-274C")
-except BelowAbsoluteZeroError:
-    print("Температура ниже абсолютного нуля")
-```
-
-### Примеры веса
-
-```python
-print(convert("1kg"))
-# 1000.0g - 1.0kg
-
-print(convert("500g"))
-# 500.0g - 0.5kg
-
-print(convert("2,5 kg"))
-# 2500.0g - 2.5kg
-```
-
-## Установка
-
-Клонируйте репозиторий:
-
-```bash
-git clone [https://github.com/ivanisp-gh/lab1-culc.git](https://github.com/ivanisp-gh/lab1-culc.git)
-```
-
-Перейдите в папку проекта:
-
-```bash
-cd lab1-culc
-```
-
-## Запуск тестов
-
-Для запуска тестов используется `pytest`.
-
-Установите `pytest`:
-
-```bash
-pip install pytest
-```
-
-Запустите тесты из корневой папки проекта:
-
-```bash
-pytest
-```
-
-Или с более подробным выводом:
-
-```bash
-pytest -v
-```
+- `calc` — вычисляет математические выражения;
+- `convert` — переводит длину, температуру и массу.
 
 ## Структура проекта
 
 ```text
-lab1-culc/
+py-lab1-calc/
 ├── src/
 │   └── toolkit/
 │       ├── __init__.py
@@ -176,15 +19,156 @@ lab1-culc/
 ├── tests/
 │   ├── test_calculator.py
 │   └── test_converter.py
-├── pytest.ini.txt
+├── pyproject.toml
 └── README.md
 ```
 
-## Ошибки
+## Требования
 
-В проекте используются собственные ошибки:
+- Python 3.10 или новее
+- `pytest` для запуска тестов
 
-- `DivisionByZeroError` — деление на ноль в калькуляторе
-- `NegativeDistanceError` — отрицательная длина
-- `BelowAbsoluteZeroError` — температура ниже абсолютного нуля
-- `ValueError` — неверно введённое выражение или величина
+Проверить версию Python:
+
+```powershell
+python --version
+```
+
+Установить pytest:
+
+```powershell
+python -m pip install pytest
+```
+
+## Запуск проекта
+
+Код проекта находится в папке `src`, поэтому перед запуском нужно добавить её в путь поиска Python.
+
+Откройте PowerShell в корне проекта:
+
+```powershell
+cd "C:\Users\yariv\OneDrive\Desktop\labs\py-lab1-calc"
+```
+
+В этом же окне терминала выполните:
+
+```powershell
+$env:PYTHONPATH = "$PWD\src"
+```
+
+Эту команду нужно выполнить один раз после открытия нового окна PowerShell. Она действует до закрытия терминала.
+
+## Команда calc
+
+Общий вид:
+
+```powershell
+python -m toolkit calc "выражение"
+```
+
+Примеры:
+
+```powershell
+python -m toolkit calc "2+2*2"
+python -m toolkit calc "(2+2)*2"
+python -m toolkit calc "10 / 2 + 3"
+python -m toolkit calc "7//2"
+python -m toolkit calc "7%2"
+```
+
+Поддерживаемые операции:
+
+```text
++   сложение
+-   вычитание
+*   умножение
+/   деление
+//  целочисленное деление
+%   остаток от деления
+()  скобки
+```
+
+## Команда convert
+
+Общий вид:
+
+```powershell
+python -m toolkit convert "значение и единица"
+```
+
+### Длина
+
+Поддерживаются: `mm`, `cm`, `m`, `km`.
+
+```powershell
+python -m toolkit convert 80mm
+python -m toolkit convert 15cm
+python -m toolkit convert 2.5m
+python -m toolkit convert 3km
+```
+
+### Масса
+
+Поддерживаются: `g`, `kg`.
+
+```powershell
+python -m toolkit convert 500g
+python -m toolkit convert 2.5kg
+python -m toolkit convert "2,5 kg"
+```
+
+### Температура
+
+Поддерживаются: `C`, `F`, `K`.
+
+```powershell
+python -m toolkit convert 25C
+python -m toolkit convert 32F
+python -m toolkit convert 273.15K
+python -m toolkit convert "0 °C"
+```
+
+Для значений с пробелом обязательно используйте кавычки:
+
+```powershell
+python -m toolkit convert "2,5 kg"
+python -m toolkit convert "32 °F"
+```
+
+## Справка
+
+```powershell
+python -m toolkit --help
+```
+
+или:
+
+```powershell
+python -m toolkit
+```
+
+## Запуск тестов
+
+Сначала в терминале установите путь к папке `src`:
+
+```powershell
+$env:PYTHONPATH = "$PWD\src"
+```
+
+Затем запустите все тесты:
+
+```powershell
+python -m pytest -v
+```
+
+Запуск только тестов калькулятора:
+
+```powershell
+python -m pytest tests/test_calculator.py -v
+```
+
+Запуск только тестов конвертера:
+
+```powershell
+python -m pytest tests/test_converter.py -v
+```
