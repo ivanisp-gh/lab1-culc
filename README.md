@@ -1,38 +1,26 @@
 # py-lab1-calc
 
-Консольное приложение с двумя командами:
+Мой проект — это калькулятор и конвертер величин.
 
-- `calc` — вычисляет математические выражения;
-- `convert` — переводит длину, температуру и массу.
+Калькулятор умеет считать примеры, а конвертер переводит длину, вес и температуру.
 
-## Структура проекта
+## Что есть в проекте
 
 ```text
-py-lab1-calc/
-├── src/
-│   └── toolkit/
-│       ├── __init__.py
-│       ├── __main__.py
-│       ├── calculator.py
-│       ├── converter.py
-│       └── errors.py
-├── tests/
-│   ├── test_calculator.py
-│   └── test_converter.py
-├── pyproject.toml
-└── README.md
+src/toolkit/
 ```
 
-## Требования
+В этой папке находится весь код программы.
 
-- Python 3.10 или новее
-- `pytest` для запуска тестов
-
-Проверить версию Python:
-
-```powershell
-python --version
+```text
+tests/
 ```
+
+В этой папке находятся тесты.
+
+## Установка
+
+Для работы нужен Python и библиотека pytest.
 
 Установить pytest:
 
@@ -40,135 +28,103 @@ python --version
 python -m pip install pytest
 ```
 
-## Запуск проекта
+## Запуск программы
 
-Код проекта находится в папке `src`, поэтому перед запуском нужно добавить её в путь поиска Python.
-
-Откройте PowerShell в корне проекта:
+Сначала нужно открыть терминал в папке проекта:
 
 ```powershell
 cd "C:\Users\yariv\OneDrive\Desktop\labs\py-lab1-calc"
 ```
 
-В этом же окне терминала выполните:
+Потом нужно написать эту команду:
 
 ```powershell
 $env:PYTHONPATH = "$PWD\src"
 ```
 
-Эту команду нужно выполнить один раз после открытия нового окна PowerShell. Она действует до закрытия терминала.
+После этого можно запускать программу.
 
-## Команда calc
+## Калькулятор
 
-Общий вид:
-
-```powershell
-python -m toolkit calc "выражение"
-```
-
-Примеры:
+Пример:
 
 ```powershell
 python -m toolkit calc "2+2*2"
+```
+
+Ещё примеры:
+
+```powershell
 python -m toolkit calc "(2+2)*2"
-python -m toolkit calc "10 / 2 + 3"
-python -m toolkit calc "7//2"
+python -m toolkit calc "10/2"
 python -m toolkit calc "7%2"
 ```
 
-Поддерживаемые операции:
+Калькулятор умеет работать с:
 
 ```text
-+   сложение
--   вычитание
-*   умножение
-/   деление
-//  целочисленное деление
-%   остаток от деления
-()  скобки
++
+-
+*
+/
+//
+%
+()
 ```
 
-## Команда convert
+## Конвертер
 
-Общий вид:
-
-```powershell
-python -m toolkit convert "значение и единица"
-```
-
-### Длина
-
-Поддерживаются: `mm`, `cm`, `m`, `km`.
+Примеры перевода длины:
 
 ```powershell
-python -m toolkit convert 80mm
-python -m toolkit convert 15cm
-python -m toolkit convert 2.5m
+python -m toolkit convert 10cm
+python -m toolkit convert 2m
 python -m toolkit convert 3km
 ```
 
-### Масса
-
-Поддерживаются: `g`, `kg`.
+Примеры перевода веса:
 
 ```powershell
 python -m toolkit convert 500g
-python -m toolkit convert 2.5kg
-python -m toolkit convert "2,5 kg"
+python -m toolkit convert 2kg
 ```
 
-### Температура
-
-Поддерживаются: `C`, `F`, `K`.
+Примеры перевода температуры:
 
 ```powershell
 python -m toolkit convert 25C
 python -m toolkit convert 32F
 python -m toolkit convert 273.15K
-python -m toolkit convert "0 C"
 ```
 
-Для значений с пробелом обязательно используйте кавычки:
+Если есть пробел, нужно писать значение в кавычках:
 
 ```powershell
 python -m toolkit convert "2,5 kg"
-python -m toolkit convert "32 F"
 ```
 
-## Справка
+## Тесты
 
-```powershell
-python -m toolkit --help
-```
-
-или:
-
-```powershell
-python -m toolkit
-```
-
-## Запуск тестов
-
-Сначала в терминале установите путь к папке `src`:
-
-```powershell
-$env:PYTHONPATH = "$PWD\src"
-```
-
-Затем запустите все тесты:
+Запустить все тесты:
 
 ```powershell
 python -m pytest -v
 ```
 
-Запуск только тестов калькулятора:
+Запустить только тесты калькулятора:
 
 ```powershell
 python -m pytest tests/test_calculator.py -v
 ```
 
-Запуск только тестов конвертера:
+Запустить только тесты конвертера:
 
 ```powershell
 python -m pytest tests/test_converter.py -v
+```
+
+## Помощь
+
+```powershell
+python -m toolkit --help
 ```
