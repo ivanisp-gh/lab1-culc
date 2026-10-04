@@ -125,14 +125,14 @@ python -m toolkit convert "2,5 kg"
 python -m toolkit convert 25C
 python -m toolkit convert 32F
 python -m toolkit convert 273.15K
-python -m toolkit convert "0 °C"
+python -m toolkit convert "0 C"
 ```
 
 Для значений с пробелом обязательно используйте кавычки:
 
 ```powershell
 python -m toolkit convert "2,5 kg"
-python -m toolkit convert "32 °F"
+python -m toolkit convert "32 F"
 ```
 
 ## Справка
