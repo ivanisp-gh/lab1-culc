@@ -33,7 +33,7 @@ python -m pip install pytest
 Сначала нужно открыть терминал в папке проекта:
 
 ```powershell
-cd "C:\Users\yariv\OneDrive\Desktop\labs\py-lab1-calc"
+cd "...\py-lab1-calc"
 ```
 
 Потом нужно написать эту команду:
